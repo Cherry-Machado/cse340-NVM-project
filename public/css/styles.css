@@ -3,4 +3,88 @@
 *:before,
 *:after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Rubik", "Helvetica", sans-serif;
+}
+
+:root {
+  --primary-color: black;
+  --secondary-color: #10B4D5;
+  --secondary-front-color: rgb(193, 239, 237);
+  --secondary-back-color: rgb(89, 10, 124);
+  --page-background: #fff;
+}
+
+html {
+  padding: 0 10px;
+}
+
+main>h1 {
+  padding: 2rem;
+}
+
+main>p {
+  font-size: x-large;
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+}
+
+#top-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 10px 0 30px 0;
+  align-items: center;
+}
+
+ul.notice {
+  padding: 10px 40px;
+  color: red;
+}
+
+.siteName {
+  font-size: 2rem;
+  text-align: left;
+}
+
+.siteName a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-family: "Raleway", sans-serif;
+}
+
+#tools {
+  font-size: 1rem;
+  text-align: right;
+}
+
+#tools a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-family: "Raleway", sans-serif;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  list-style: none;
+  background-color: var(--primary-color);
+  padding: 15px 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: .5rem .75rem;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+nav ul li a:hover {
+  text-decoration: none;
+  color: black;
+  background-color: var(--page-background);
+  font-size: 1.5rem;
 }
