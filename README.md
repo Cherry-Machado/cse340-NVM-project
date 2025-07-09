@@ -1,5 +1,9 @@
 ## Getting Started
 
+This is my Project from the class CSE 340: Web Backend Development of BYU-Idaho.
+
+To see the project rendered: https://cse340-nvm-project.onrender.com/
+
 This document is intended to get you started quickly in building a backend driven Node.js application complete with pages and content, backend logic and a PostgreSQL database for data storage.
 ## Prerequisites
 
