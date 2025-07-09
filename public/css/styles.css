@@ -70,6 +70,7 @@ nav ul {
   justify-content: space-between;
   flex-direction: row;
   list-style: none;
+  color: white;
   background-color: var(--primary-color);
   padding: 15px 10px;
 }
