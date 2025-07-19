@@ -6,7 +6,7 @@
  * Require Statements
  *************************/
 const express = require("express")
-expressLayouts = require("express-ejs-layouts")
+const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
@@ -28,13 +28,13 @@ app.set("layout", "./layouts/layout") // not at views root
 // Static files route
 app.use(static)
 // Base route
-app.get("/", baseController.buildHome) //Week 3
+app.get("/", utilities.handleErrors(baseController.buildHome)) //Week 3
 // Inventory route
 app.use("/inv", inventoryRoute)
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
 
 
@@ -48,14 +48,23 @@ app.get("/", (req, res) => {
 * Place after all other middleware
 *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  res.render("errors/error", {
-    title: err.status || 'Server Error',
-    message: err.message,
-    nav
-  })
-})
+  let nav = await utilities.getNav();
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+  const statusCode = err.status || 500;
+  let message = err.message;
+
+  // For security, don't leak server error details to the client
+  if (statusCode !== 404) {
+    message = 'Oh no! There was a server crash. We are working on it.';
+  }
+
+  res.status(statusCode).render("errors/error", {
+    title: statusCode === 404 ? 'Page Not Found' : 'Server Error',
+    message,
+    nav,
+  });
+});
+
 
 /* ***********************
  * Local Server Information

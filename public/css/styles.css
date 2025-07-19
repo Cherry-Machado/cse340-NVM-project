@@ -245,6 +245,17 @@ nav ul li a:hover {
 
 /********** Footer ************/
 
+footer {
+    padding: 1rem;
+    border-top: 1px solid #ccc;
+    text-align: center;
+}
+
+footer a[title*="Trigger a 500 error"] {
+    color: red;
+    font-weight: bold;
+}
+
 .copyright {
   padding: 20px;
 }
@@ -256,10 +267,13 @@ nav ul li a:hover {
   list-style: none;
   padding: 1em;
   justify-content: center;
+
 }
 
 #inv-display li img {
-  max-height: 50%;
+ /*  max-height: 50%; */
+ max-width: 100%;
+  height: auto;
 }
 
 #inv-display li {
@@ -274,7 +288,45 @@ nav ul li a:hover {
 .namePrice h2 a {
   color: white;
   display: block;
-  margin: 1rem;
+  margin: 1rem; 
+}
+
+
+/******* Vehicle Detail View Styling *******/
+#detail-view-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 1rem 0;
+}
+
+.detail-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#detail-data h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #555;
+}
+
+#detail-data p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+/* Media Query for larger screens */
+@media (min-width: 768px) {
+    #detail-view-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
 }
 
 @media only screen and (min-width: 1300px) {
