@@ -91,6 +91,19 @@ nav ul li a:hover {
   font-size: 1.5rem;
 }
 
+.sinpuntos {
+  list-style: none;
+  font-size: 1.5rem;
+  font-family: "Raleway", sans-serif;
+}
+
+.sinpuntos li {
+  margin-left: 3rem;
+  padding: .5rem;
+  color: var(--secondary-back-color);
+  font-family: "Raleway", sans-serif;
+}
+
 .welcome-title {
   font-size: 1.4rem;
   padding: 15px 0;
@@ -236,6 +249,34 @@ nav ul li a:hover {
   padding: 20px;
 }
 
+/*** Inventary Display by Categorys ***/
+#inv-display {
+  display: grid;
+  gap: 1em;
+  list-style: none;
+  padding: 1em;
+  justify-content: center;
+}
+
+#inv-display li img {
+  max-height: 50%;
+}
+
+#inv-display li {
+  max-width: 25em;
+  background-color: black;
+  color: white;
+  border-radius: 1.5em;
+  padding: 2em;
+  text-align: center;
+}
+
+.namePrice h2 a {
+  color: white;
+  display: block;
+  margin: 1rem;
+}
+
 @media only screen and (min-width: 1300px) {
 
   html {
@@ -355,6 +396,60 @@ nav ul li a:hover {
     justify-content: center;
   }
 
+  .welcome-title {
+    font-size: 3.5rem;
+  }
+
+  .vehicle-info {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .car-details {
+    padding: 60px 0 0 140px;
+    line-height: 40px;
+    z-index: 2;
+  }
+
+  .car-details p:first-child {
+    font-size: 2.5rem;
+    padding-bottom: 10px;
+  }
+
+  .car-details p:nth-child(2) {
+    font-size: 2rem;
+    padding-bottom: 40px;
+  }
+
+  .today {
+    width: 220px;
+    height: 70px;
+  }
+
+  .vehicle {
+    grid-column: 1/4;
+    width: 1400px;
+    z-index: 1;
+  }
+
+  .vehicle-upgrades {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+  .upgrade-title {
+    font-size: 2.4rem;
+    padding: 60px 0;
+    font-weight: bolder;
+  }
+
+  .vehicle-upgrades div img {
+    width: 200px;
+  }
+
+  .vehicle-upgrades div a {
+    font-size: 1.5rem;
+  }
+
   /**************** Vehicle Reviews ******************/
 
   .vehicle-reviews {
@@ -373,4 +468,26 @@ nav ul li a:hover {
     padding: 5px 0;
     line-height: 40px;
   }
+
+   /*** Inventary Display by Categorys ***/
+
+  #inv-display {
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+  }
+
+  #inv-display li {
+    width: 25em;
+  }
+
+  #inv-display li {
+    width: 25em;
+  }
+
+  /**************** footer ******************/
+
+  .copyright {
+    font-size: 1.5rem;
+  }
+
 }

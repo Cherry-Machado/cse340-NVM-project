@@ -1,0 +1,12 @@
+<!-- Inventory Classification View -->
+ <!-- Content Heading-->
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<%# messages() %>
+
+<!-- Inventory Items Grid -->
+<%- grid %>
