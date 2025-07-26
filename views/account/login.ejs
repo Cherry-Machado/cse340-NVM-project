@@ -1,0 +1,54 @@
+<!-- Content Heading -->
+<h1>
+    <%= title %>
+</h1>
+<!-- Flash message -->
+<%- messages() %>
+    <% if (locals.errors) { %>
+        <ul class="notice">
+            <% locals.errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
+            <!-- login -->
+            <form id="loginForm" action="/account/login" method="post">
+                <p class="loginMessage">All fields are required.</p>
+                <fieldset class="data-box">
+                    <div class="loginForm-control">
+                        <label for="accountEmail">Email Address:</label>
+                        <input type="email" name="account_email" id="accountEmail"
+                            placeholder="Enter a valid email address" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+                            required value="<%= locals.account_email || '' %>">
+                    </div>
+                    <div class="loginForm-control">
+                        <label for="accountPassword">Password:</label>
+                        <input type="password" name="account_password" id="accountPassword" placeholder="Password"
+                            required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+                        <span id="pswdBtn">Show Password</span>
+                    </div>
+                    <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital
+                        letter and 1 special character.</span>
+
+                </fieldset>
+                <button type="submit">Login</button>
+                <p>No account? <a href="/account/register">Sign-up</a></p>
+            </form>
+
+            <!-- Script to handle hiding and revealing password field -->
+            <script>
+                const pswdBtn = document.querySelector("#pswdBtn");
+                pswdBtn.addEventListener("click", function () {
+                    const pswdInput = document.getElementById("accountPassword");
+                    const type = pswdInput.getAttribute("type");
+                    if (type == "password") {
+                        pswdInput.setAttribute("type", "text");
+                        pswdBtn.innerHTML = "Hide Password";
+                    } else {
+                        pswdInput.setAttribute("type", "password");
+                        pswdBtn.innerHTML = "Show Password";
+                    }
+                });
+            </script>

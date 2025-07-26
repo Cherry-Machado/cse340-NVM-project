@@ -4,8 +4,6 @@ const router = new express.Router()
 const invController = require("../controllers/invController")
 const utilities = require("../utilities/")
 
-module.exports = router
-
 /* ****************************************
  * Inventory Routes
  * These routes handle the inventory views
