@@ -18,6 +18,18 @@ router.get(
 );
 
 /* ****************************************
+ * Process Login
+ * Unit 4, Process login activity
+ **************************************** */
+router.post(
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+);
+
+
+/* ****************************************
  * Deliver Registration View
  * Unit 4, deliver registration view activity
  **************************************** */

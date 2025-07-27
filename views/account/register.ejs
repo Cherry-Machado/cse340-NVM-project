@@ -1,7 +1,8 @@
 <!-- Content Heading -->
-<h1>
-    <%= title %>
-</h1>
+ <%# Unit 4, Deliver Register Activity %>
+ <% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect("/"); } %>
 <!-- Flash message -->
 <%- messages() %>
     <% if (locals.errors) { %>
@@ -20,7 +21,7 @@
                     <div class="registerForm-control">
                         <label for="accountFirstName">First Name:</label>
                         <input type="text" name="account_firstname" id="accountFirstName" required
-                            autocomplete="given-name" value="<%= locals.account_firstname %>">
+                            autocomplete="given-name" value="<%= locals.account_firstname %>" autofocus>
                     </div>
                     <div class="registerForm-control">
                         <label for="accountLastName">Last Name:</label>
