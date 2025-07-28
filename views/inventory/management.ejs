@@ -1,0 +1,34 @@
+<!-- Content Heading -->
+<h1><%- title %></h1>
+
+<!-- Message Block -->
+<%- messages() %>
+    <% if (locals.errors) { %>
+        <ul class="notice">
+            <% locals.errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
+
+            <ul class="sinpuntos">
+                <li>
+                    <a href="/inv/add-classification">Add New Classification</a>
+                </li>
+                <li>
+                    <a href="/inv/add-inventory">Add New Vehicle</a>
+                </li>
+            </ul>
+
+            <div class="manageInv">
+                <h2>Manage Inventory</h2>
+                <p>Choose a classification to see those inventory items.</p>
+                <%- classificationSelect %>
+                    <table id="inventoryDisplay"></table>
+            </div>
+
+
+            <noscript>JavaScript must be enable to use this page.</noscript>
+            <script src="../../js/inventory.js"></script>

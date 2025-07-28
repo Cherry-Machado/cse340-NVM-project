@@ -44,7 +44,7 @@ ul.notice {
 }
 
 ul.success {
-  font-size: 2rem;
+  font-size: 1.2rem;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   padding: 10px 40px;
   color: green;
@@ -495,6 +495,13 @@ textarea {
   width: 10em;
   text-align: center;
   cursor: pointer;
+}
+
+.manageInv {
+  padding: 10px;
+  display: block;
+  margin: 0 20px;
+  line-height: 30px;
 }
 
 /* Media Query for larger screens */

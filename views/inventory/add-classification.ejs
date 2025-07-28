@@ -1,0 +1,26 @@
+<!-- Content Heading -->
+<h1><%- title %></h1>
+
+<!-- Message Block -->
+<%- messages() %>
+    <% if (locals.errors) { %>
+        <ul class="notice">
+            <% locals.errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
+
+            <form id="classificationForm" class="classificationForm-control" method="post">
+                <p>A name field is required.</p>
+                <%# All data should be sent by the form action... %>
+                    <fieldset class="classificationFieldset">
+                        <label for="classification_name">CLASSIFICATION NAME</label><br>
+                        <span class="classificationsubmessage">NAME must not contain a space or special character</span><br>
+                        <input type="text" id="classification_name" name="classification_name" required
+                            pattern="[0-9a-zA-Z]+" value="<%= locals.classification_name || '' %>">
+                        <button type="submit">Add Classification</button>
+                    </fieldset>
+            </form>
