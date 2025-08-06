@@ -60,7 +60,10 @@ router.get(
 );
 
 // Update inventory item
-//router.post("/update/", utilities.handleErrors(invController.updateInventory));
 router.post("/update/", Validate.inventoryRules(), Validate.checkUpdateData, utilities.handleErrors(invController.updateInventory));
+
+// Delete vehicle information routes
+router.get("/delete/:inventoryId", utilities.handleErrors(invController.buildDeleteInventory));
+router.post("/delete/", utilities.handleErrors(invController.deleteInventory)); // Don't need validation
 
 module.exports = router;

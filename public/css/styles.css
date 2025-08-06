@@ -573,6 +573,42 @@ textarea {
   line-height: 30px;
 }
 
+/* Confirmation message to delete vehicle */
+  .updateinventoryFieldset > p,
+  #updateInventoryForm p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    background-color: #4d0f0f; 
+    color: #fbebeb;
+    padding: 13px;
+    border-radius: 10px;
+    border: 2px solid #ff5252;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    /* Call the new animation */
+    animation: pulse-glow 2s infinite ease-in-out;
+  }
+
+  /* Keyframes for the new glowing pulse animation */
+  @keyframes pulse-glow {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 5px rgba(255, 82, 82, 0.2);
+    }
+    50% {
+      transform: scale(1.02); /* Grow about 2% subtly */
+      box-shadow: 0 0 20px 5px rgba(255, 82, 82, 0.6); /* The glow expands */
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 5px rgba(255, 82, 82, 0.2);
+    }
+  }
+
+
+
+
 /* Media Query for larger screens */
 @media (min-width: 768px) {
     #detail-view-container {
@@ -816,17 +852,18 @@ textarea {
   }
 
   .registerForm-control input,
-.loginForm-control input,
-.classificationForm-control input,
-.addinventoryForm-control input,
-.addinventoryForm-control textarea,
-.updateInventoryForm-control textarea,
-.updateInventoryForm-control input {
-  font-size: 1.5rem;
-}
+  .loginForm-control input,
+  .classificationForm-control input,
+  .addinventoryForm-control input,
+  .addinventoryForm-control textarea,
+  .updateInventoryForm-control textarea,
+  .updateInventoryForm-control input {
+    font-size: 1.5rem;
+  }
 
   .data-box label span {
     font-size: 1.2rem;
   }
 
 }
+

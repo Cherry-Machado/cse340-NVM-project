@@ -150,43 +150,6 @@ async function accountLogin(req, res) {
     throw new Error('Access Forbidden')
   }
 };
-/*async function accountLogin(req, res) {
-  let nav = await utilities.getNav();
-  const { account_email, account_password } = req.body;
-
-  // Get account data by email
-  const accountData = await accountModel.getAccountByEmail(account_email);
-  if (!accountData) {
-    req.flash("notice", "Email not found. Please register or try a different email.");
-    res.status(401).render("account/login", {
-      title: "Login",
-      nav,
-      errors: null, // Initialize errors to null
-    });
-    return;
-  }
-
-  // Compare password with hashed password
-  const isPasswordValid = await bcrypt.compare(account_password, accountData.account_password);
-  if (!isPasswordValid) {
-    req.flash("notice", "Invalid password. Please try again.");
-    res.status(401).render("account/login", {
-      title: "Login",
-      nav,
-      errors: null, // Initialize errors to null
-    });
-    return;
-  }
-
-  // Create JWT token
-  const token = jwt.sign({ accountId: accountData.account_id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
-
-  // Set token in session or cookie (depending on your setup)
-  req.session.token = token;
-
-  req.flash("success", `Welcome, ${accountData.account_firstname}!`);
-  res.redirect("/");
-}*/
 
 module.exports = {
   buildLogin,

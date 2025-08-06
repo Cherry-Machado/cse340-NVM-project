@@ -1,0 +1,32 @@
+<h1><%- title %></h1>
+<%- messages() %>
+  <% if (locals.errors) { %>
+    <ul class="notice">
+      <% locals.errors.array().forEach(error=> { %>
+        <li>
+          <%= error.msg %>
+        </li>
+        <% }) %>
+    </ul>
+    <% } %>
+      
+      <form id="updateInventoryForm" class="updateInventoryForm-control" action="/inv/delete" method="post">
+        <p>Are you sure you want to delete this vehicle?</p>
+        <fieldset class="updateinventoryFieldset">
+          <label>Make<input type="text" value="<%- locals.inv_make %>"
+                          placeholder="Toyota" name="inv_make" minlength="2"
+                          maxlength="50" autofocus readonly></label>
+          <label>Model<input type="text" value="<%- locals.inv_model %>"
+                          placeholder="Runner" name="inv_model" minlength="2"
+                          maxlength="50" readonly></label>
+          <label>Year<input type="number" value="<%- locals.inv_year %>"
+                          placeholder="2001" name="inv_year" min="1900" max="2030"
+                          readonly></label>
+          <label>Price<input type="number" value="<%- locals.inv_price %>"
+                          placeholder="45000" name="inv_price" min="0" readonly></label>
+          <p class="confirm-delete">Confirm Deletion - The delete is permanent.</p>
+          <button class="btnupdate" type="submit" name="sumbit">Delete Vehicle</button>
+          <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+            <% } %>>
+        </fieldset>
+      </form>
