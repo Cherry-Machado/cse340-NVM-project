@@ -1,0 +1,16 @@
+<h1><%- title %></h1>
+
+<%- messages() %>
+
+    <% if (locals.errors) { %>
+        <ul class="notice">
+            <% locals.errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
+
+            <h2>Welcome! <%- locals.account_firstname %></h2>
+            <h3><br>You're logged in</h3>

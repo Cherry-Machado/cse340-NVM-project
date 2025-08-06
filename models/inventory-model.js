@@ -9,6 +9,7 @@ async function getClassifications(){
 
 /* ***************************
  *  Get all inventory items and classification_name by classification_id
+ *  Unit 3, Activities
  * ************************** */
 async function getInventoryByClassificationId(classification_id) {
   try {
@@ -48,7 +49,23 @@ async function addClassification(classification_name) {
 /* ***************************
  *  Get inventory item by inventory id
  * ************************** */
-async function getInventoryByInventoryId(inventory_id) {
+
+async function getInventoryByInventoryId(inventory_Id) {
+  try {
+    const data = await pool.query(
+      `SELECT * FROM public.inventory
+        INNER JOIN public.classification
+        ON public.inventory.classification_id = public.classification.classification_id
+        WHERE inv_id = $1`,
+      [inventory_Id]
+    );  
+    return data.rows;
+  } catch (error) {
+    console.error("getInventoryByInventoryId error:" + error);
+  }
+}
+
+/* async function getInventoryByInventoryId(inventory_id) {
   try {
     const data = await pool.query(
       `SELECT * FROM public.inventory WHERE inv_id = $1`,
@@ -59,7 +76,7 @@ async function getInventoryByInventoryId(inventory_id) {
     console.error("getinventorybyinventoryid error " + error)
   }
 }
-
+ */
 /*******************************
  * Add a single inventory item
  * in the database.
@@ -106,5 +123,43 @@ async function addInventory(
   }
 }
 
+/* ***************************
+ *  Update Inventory Data
+ * ************************** */
+async function updateInventory(
+  inv_id,
+  inv_make,
+  inv_model,
+  inv_year,
+  inv_description,
+  inv_image,
+  inv_thumbnail,
+  inv_price,
+  inv_miles,
+  inv_color,
+  classification_id
+) {
+  try {
+    const sql =
+      "UPDATE public.inventory SET inv_make = $1, inv_model = $2, inv_year = $3, inv_description = $4, inv_image = $5, inv_thumbnail = $6, inv_price = $7, inv_miles = $8, inv_color = $9, classification_id = $10 WHERE inv_id = $11 RETURNING *"
+    const data = await pool.query(sql, [
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+      inv_id
+    ])
+    return data.rows[0]
+  } catch (error) {
+    console.error("updateInventoryerror: " + error)
+  }
+}
 
-module.exports = { getClassifications, getInventoryByClassificationId, addClassification, getInventoryByInventoryId, addInventory };
+
+module.exports = { getClassifications, getInventoryByClassificationId, addClassification, getInventoryByInventoryId, addInventory, updateInventory };

@@ -7,6 +7,7 @@
  *************************/
 const session = require("express-session")
 const pool = require('./database/')
+const cookieParser = require("cookie-parser")
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
@@ -33,6 +34,10 @@ const utilities = require("./utilities/")
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
+// Middleware to parse cookies
+app.use(cookieParser())
+app.use(utilities.checkJWTToken) 
 
 
 app.use(express.json()) // for parsing application/json

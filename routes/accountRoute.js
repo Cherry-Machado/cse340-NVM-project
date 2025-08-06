@@ -8,6 +8,14 @@ const accountController = require("../controllers/accountController")
 const utilities = require("../utilities")
 const regValidate = require("../utilities/account-validation")  
 
+
+// Management view
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.accountManagementView)
+);
+
 /* ****************************************
  * Deliver Login View
  * Unit 4, deliver login view activity
