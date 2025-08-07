@@ -606,7 +606,12 @@ textarea {
     }
   }
 
-
+.logout {
+  color: var(--secondary-color);
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
 
 
 /* Media Query for larger screens */

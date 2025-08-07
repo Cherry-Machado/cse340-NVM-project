@@ -1,0 +1,75 @@
+<!-- Content Heading -->
+ <%# Unit 4, Deliver Update Activity %>
+ <% if (title) { %>
+<h1><%= title %></h1>
+<% } else { res.redirect("/"); } %>
+<!-- Flash message -->
+<%- messages() %>
+    <% if (locals.errors) { %>
+        <ul class="notice">
+            <% locals.errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
+            <!-- Updating account information -->
+            <form id="updateAccountForm" action="/account/update" method="post">
+                <h2>Update Account Information</h2>
+                <fieldset class="data-box">
+                    <div class="registerForm-control">
+                        <label for="accountFirstName">First Name:</label>
+                        <input type="text" name="account_firstname" id="accountFirstName" required
+                            autocomplete="given-name" value="<%= locals.account_firstname %>" autofocus>
+                    </div>
+                    <div class="registerForm-control">
+                        <label for="accountLastName">Last Name:</label>
+                        <input type="text" name="account_lastname" id="accountLastName" required
+                            autocomplete="family-name" value="<%= locals.account_lastname %>">
+                    </div>
+                    <div class="registerForm-control">
+                        <label for="accountEmail">Email Address:</label>
+                        <input type="email" name="account_email" id="accountEmail"
+                            pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required autocomplete="email"
+                            placeholder="Enter a valid email address" value="<%= locals.account_email || '' %>">
+                    </div>
+                </fieldset>
+                <button type="submit">Update Account</button>
+                <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+                <input type="hidden" name="old_email" value="<%= locals.account_email %>"> <%# To exclude from existing email search %>
+            </form>
+            
+            <!-- Password update section -->
+             <form id="updatePasswordForm" action="/account/update-password" method="post">
+                <h2>Change Password</h2>
+                <fieldset class="data-box">
+                   <div class="registerForm-control">
+                        <label for="accountPassword">Password:</label>
+                        <input type="password" name="account_password" id="accountPassword" required
+                            autocomplete="new-password" placeholder="Password"
+                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+                        <span id="pswdBtn">Show Password</span>
+                    </div>
+                    <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital
+                        letter and 1 special character.</span>
+                </fieldset>
+                <button type="submit">CHANGE PASSWORD</button>
+                <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+            </form>
+
+            <!-- Script to handle hiding and revealing password field -->
+            <script>
+                const pswdBtn = document.querySelector("#pswdBtn");
+                pswdBtn.addEventListener("click", function () {
+                    const pswdInput = document.getElementById("accountPassword");
+                    const type = pswdInput.getAttribute("type");
+                    if (type == "password") {
+                        pswdInput.setAttribute("type", "text");
+                        pswdBtn.innerHTML = "Hide Password";
+                    } else {
+                        pswdInput.setAttribute("type", "password");
+                        pswdBtn.innerHTML = "Show Password";
+                    }
+                });
+            </script>
