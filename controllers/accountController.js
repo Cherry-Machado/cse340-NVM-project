@@ -209,25 +209,19 @@ async function updateAccount(req, res) {
     account_email,
   );
 
-  if (regResult) {
+  if (regResult.rowCount) {
     req.flash(
       "success",
       `Congratulations, you've updated ${account_firstname}.`
     );
 
-    //Update the cookie accountData
-    // TODO: Better way to do this?
-
+    // Update the cookie with the new account data
     const accountData = await accountModel.getAccountById(account_id); // Get it from db so we can remake the cookie
     delete accountData.account_password;
-    res.locals.accountData.account_firstname = accountData.account_firstname; // So it displays correctly
     utilities.updateCookie(accountData, res); // Remake the cookie with new data
 
-    res.status(201).render("account/account-management", {
-      title: "Management",
-      errors: null,
-      nav,
-    });
+    // Redirect to the account management view
+    return res.redirect("/account/");
   } else {
     req.flash("notice", "Sorry, the update failed.");
     res.status(501).render("account/update", {
@@ -270,16 +264,12 @@ async function updatePassword(req, res) {
 
   const regResult = await accountModel.updatePassword(account_id, hashedPassword);
 
-  if (regResult) {
+  if (regResult.rowCount) {
     req.flash(
       "success",
       `Congratulations, you've updated the password.`
     );
-    res.status(201).render("account/account-management", {
-      title: "Manage",
-      errors: null,
-      nav,
-    });
+    return res.redirect("/account/");
   } else {
     req.flash("notice", "Sorry, the password update failed.");
     res.status(501).render("account/update", {

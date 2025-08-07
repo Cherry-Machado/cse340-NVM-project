@@ -1,5 +1,3 @@
-<h1><%- title %></h1>
-
 <%- messages() %>
 
     <% if (locals.errors) { %>
@@ -12,14 +10,22 @@
         </ul>
         <% } %>
  
-<h2>Welcome <%= locals.accountData.account_firstname %></h2>
+<div class="account-management-container">
+    <h1><%- title %></h1>
+    <h2>Welcome, <%= locals.accountData.account_firstname %>!</h2>
+    <p class="welcome-message">You're logged in and can manage your account details below.</p>
 
-<p>You're logged in.</p>
+    <div class="management-section">
+        <h3>Account Settings</h3>
+        <p>Update your personal information and password.</p>
+        <a href="/account/update/<%= locals.accountData.account_id %>" class="management-link">Update Account Information</a>
+    </div>
 
-<h3>Account Management</h3>
-<p><a href="/account/update/<%= locals.accountData.account_id %>">Update Account Information</a></p>
-
-<% if (locals.accountData.account_type === 'Employee' || locals.accountData.account_type === 'Admin') { %>
-    <h3>Inventory Management</h3>
-    <p><a href="/inv/">Vehicle Management</a></p>
-<% } %>
+    <% if (locals.accountData.account_type === 'Employee' || locals.accountData.account_type === 'Admin') { %>
+        <div class="management-section">
+            <h3>Inventory Management</h3>
+            <p>Access tools to add, modify, and delete vehicle classifications and inventory.</p>
+            <a href="/inv/" class="management-link">Vehicle Management</a>
+        </div>
+    <% } %>
+</div>

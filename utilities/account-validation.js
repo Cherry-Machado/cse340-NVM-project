@@ -156,15 +156,6 @@ validate.updateRules = () => {
       .isEmail()
       .normalizeEmail() // refer to validator.js docs
       .withMessage("A valid email is required.")
-      .custom(async (account_email, { req }) => { // Magic
-        console.dir(req.body);
-        const emailExists = await accountModel.checkExistingEmail(
-          account_email, req.body.old_email
-        );
-        if (emailExists) {
-          throw new Error("Email exists. Please log in or use different email");
-        }
-      }),
   ];
 };
 
@@ -177,7 +168,7 @@ validate.checkUpdateData = async (req, res, next) => {
   errors = validationResult(req);
   if (!errors.isEmpty()) {
       let nav = await utilities.getNav();
-      res.render("account/update/", {
+      res.render("account/update", {
           errors,
           title: "Update",
           nav,

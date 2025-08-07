@@ -333,17 +333,19 @@ footer a[title*="Trigger a 500 error"] {
 #loginForm,
 #classificationForm,
 #addinventoryForm,
-#updateInventoryForm
+#updateInventoryForm,
+#updateAccountForm,
+#updatePasswordForm
  {
   background-color: aqua;
   padding: 10px 0px; 
   font-family: inherit; 
   font-size: 1.5rem;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
   /* margin: 2rem auto; */
   border-radius: 10px;
   /* width: 40%; */
-  width: 96%; /* Ancho flexible para móviles */
+  width: 92%; /* Ancho flexible para móviles */
   max-width: 600px; /* Ancho máximo para pantallas pequeñas */
   box-shadow: 0 0 .8rem rgba(0, 0, 0, 0.3);
 
@@ -425,6 +427,8 @@ footer a[title*="Trigger a 500 error"] {
 }
 
 #registerForm button,
+#updateAccountForm button,
+#updatePasswordForm button,
 #loginForm button,
 #classificationForm button,
 #addinventoryForm button,
@@ -450,6 +454,8 @@ textarea {
 }
 
 #registerForm p,
+#updateAccountForm p,
+#updatePasswordForm p,
 #loginForm p {
   text-align: center;
 
@@ -459,6 +465,13 @@ textarea {
 #addinventoryForm p,
 #updateInventoryForm p {
   text-align: center;
+}
+
+#updateAccountForm h3,
+#updatePasswordForm h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-top: 1rem; /* Añade espacio arriba para que no esté pegado al borde */
 }
 
 .classificationFieldset,
@@ -613,6 +626,69 @@ textarea {
   font-size: 1.5rem;
 }
 
+/* Account Management View Styles */
+.account-management-container {
+  padding: 1rem 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  margin: 1rem auto;
+  max-width: 900px;
+}
+
+
+.account-management-container h2 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.welcome-message {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+}
+
+.management-section {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.management-section h3 {
+  font-size: 1.5rem;
+  color: var(--secondary-back-color);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.management-section p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.management-link {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.management-link:hover {
+  background-color: var(--secondary-back-color);
+  transform: translateY(-2px);
+  color: white; /* Ensure text color remains white on hover */
+}
 
 /* Media Query for larger screens */
 @media (min-width: 768px) {
@@ -838,6 +914,8 @@ textarea {
   /****************** login page ******************/
 
   #registerForm,
+  #updateAccountForm,
+  #updatePasswordForm,
   #loginForm,
   #classificationForm,
   #addinventoryForm,
@@ -847,6 +925,8 @@ textarea {
   } 
 
   #registerForm button,
+  #updateAccountForm button,
+  #updatePasswordForm button,
   #loginForm button,
   #classificationForm button,
   #addinventoryForm button,
@@ -871,4 +951,3 @@ textarea {
   }
 
 }
-
