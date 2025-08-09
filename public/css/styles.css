@@ -691,7 +691,6 @@ textarea {
 }
 
 
-
 /* Media Query for larger screens */
 @media (min-width: 768px) {
     #detail-view-container {
@@ -953,3 +952,4 @@ textarea {
   }
 
 }
+

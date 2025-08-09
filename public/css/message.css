@@ -1,269 +1,285 @@
 /* =================================
-   Message Module Styles
+   MESSAGE MODULE STYLES (FROM SCRATCH)
    ================================= */
 
-/* Main container for message views */
-.message-container {
+/* --- Main Container ---
+   This is the base for all message module views. */
+#wrapper main .message-container {
+    font-family: "Rubik", "Helvetica", sans-serif;
     max-width: 960px;
     margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: #fff;
+    padding: 1.5rem 2rem;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* Header for Inbox and Message View */
-.message-header {
+/* --- View Header ---
+   Contains the title and main action buttons. */
+#wrapper main .message-container .message-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #e0e0e0;
     flex-wrap: wrap;
     gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
 }
 
-.message-header h1 {
-    margin: 0;
+#wrapper main .message-container .message-header h1 {
+    font-family: "Raleway", sans-serif;
     font-size: 1.8rem;
-    color: #333;
+    color: #212529;
+    margin: 0;
 }
 
-.message-actions {
+#wrapper main .message-container .message-actions {
     display: flex;
     gap: 0.75rem;
+    align-items: center;
 }
 
-.message-actions .btn,
-.message-form .btn,
-.delete-confirmation .btn {
-    padding: 0.6rem 1.2rem;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-    cursor: pointer;
+/* --- Buttons ---
+   High-specificity rules to override global styles. */
+#wrapper main .message-container .btn {
     display: inline-block;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-}
-
-.btn-danger {
-    background-color: #dc3545;
-    color: white;
-}
-
-.btn-danger:hover {
-    background-color: #c82333;
-}
-
-.btn-outline {
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
     background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+#wrapper main .message-container .btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+#wrapper main .message-container .btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+#wrapper main .message-container .btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+#wrapper main .message-container .btn-secondary:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+#wrapper main .message-container .btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+#wrapper main .message-container .btn-danger:hover {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+#wrapper main .message-container .btn-outline {
     color: #007bff;
     border-color: #007bff;
 }
-
-.btn-outline:hover {
+#wrapper main .message-container .btn-outline:hover {
+    color: #fff;
     background-color: #007bff;
-    color: white;
+    border-color: #007bff;
 }
 
-/* Message List (Inbox/Archive) */
-.message-list {
+/* --- Inbox Message List --- */
+#wrapper main .message-container .message-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.message-item {
-    border-bottom: 1px solid #eee;
-    transition: background-color 0.2s ease;
+#wrapper main .message-container .message-item {
+    border-bottom: 1px solid #e9ecef;
 }
-
-.message-item:last-child {
+#wrapper main .message-container .message-item:last-child {
     border-bottom: none;
 }
 
-.message-item.unread .message-sender,
-.message-item.unread .message-subject {
-    font-weight: bold;
-    color: #212529;
-}
-
-.message-item.read .message-sender,
-.message-item.read .message-subject {
-    font-weight: normal;
-    color: #495057;
-}
-
-.message-item:hover {
-    background-color: #e9ecef;
-}
-
-.message-link {
+#wrapper main .message-container .message-item a.message-link {
     display: grid;
     grid-template-columns: 1.5fr 3fr 1fr;
     gap: 1rem;
     padding: 1rem;
     text-decoration: none;
-    color: inherit;
+    color: #495057;
     align-items: center;
+    transition: background-color 0.2s ease;
+}
+#wrapper main .message-container .message-item a.message-link:hover {
+    background-color: #f8f9fa;
 }
 
-.message-sender {
+#wrapper main .message-container .message-item.unread a.message-link {
+    font-weight: 700;
+    color: #212529;
+}
+
+#wrapper main .message-container .message-sender .sender-name {
     font-size: 0.95rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
-
-.sender-name {
-    color: #333;
-}
-
-.sender-role {
+#wrapper main .message-container .message-sender .sender-role {
     font-size: 0.85rem;
     color: #6c757d;
+    font-weight: 400;
 }
 
-.message-subject {
+#wrapper main .message-container .message-subject {
     font-size: 1rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.message-date {
+#wrapper main .message-container .message-date {
     font-size: 0.85rem;
     color: #6c757d;
     text-align: right;
     white-space: nowrap;
+    font-weight: 400;
 }
 
-/* Single Message View */
-.message-view-header {
-    padding: 1rem;
+/* --- Single Message View --- */
+#wrapper main .message-container .message-view-header {
+    padding: 1rem 1.5rem;
     background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
     border-radius: 5px;
     margin-bottom: 1.5rem;
 }
 
-.message-meta {
+#wrapper main .message-container .message-meta {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
     color: #6c757d;
     font-size: 0.9rem;
 }
 
-.message-view-subject {
-    font-size: 1.5rem;
+#wrapper main .message-container .message-view-subject {
+    font-size: 1.7rem;
     font-weight: 600;
     margin: 0;
-    color: #333;
+    color: #343a40;
 }
 
-.message-body-content {
+#wrapper main .message-container .message-body-content {
     padding: 1rem 0;
     font-size: 1rem;
-    line-height: 1.6;
-    white-space: pre-wrap; /* Preserves line breaks and spaces */
+    line-height: 1.7;
+    white-space: pre-wrap;
     word-wrap: break-word;
     color: #212529;
 }
 
-/* Compose/Reply Form */
-.message-form {
+/* --- Compose/Reply Form --- */
+#wrapper main .message-container .message-form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
-.message-form label {
+#wrapper main .message-container .message-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#wrapper main .message-container .message-form label {
     font-weight: 600;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
     color: #495057;
 }
 
-.message-form input[type="text"],
-.message-form select,
-.message-form textarea {
+#wrapper main .message-container .message-form input[type="text"],
+#wrapper main .message-container .message-form select,
+#wrapper main .message-container .message-form textarea {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #ced4da;
     border-radius: 5px;
     font-size: 1rem;
     font-family: inherit;
+    background-color: #fff;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.message-form input[type="text"]:focus,
-.message-form select:focus,
-.message-form textarea:focus {
+#wrapper main .message-container .message-form input[type="text"]:focus,
+#wrapper main .message-container .message-form select:focus,
+#wrapper main .message-container .message-form textarea:focus {
     border-color: #80bdff;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-.message-form textarea {
-    min-height: 200px;
+#wrapper main .message-container .message-form textarea {
+    min-height: 250px;
     resize: vertical;
 }
 
-/* Delete Confirmation View */
-.delete-confirmation {
+#wrapper main .message-container .message-form .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+/* --- Delete Confirmation View --- */
+#wrapper main .message-container.delete-confirmation {
     text-align: center;
 }
 
-.delete-confirmation p {
+#wrapper main .message-container.delete-confirmation p {
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
 }
 
-/* Responsive Styles */
+#wrapper main .message-container .message-to-delete {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+/* --- Responsive Styles --- */
 @media (max-width: 768px) {
-    .message-header {
+    #wrapper main .message-container {
+        padding: 1rem;
+    }
+    #wrapper main .message-container .message-header {
         flex-direction: column;
         align-items: flex-start;
     }
-
-    .message-link {
+    #wrapper main .message-container .message-item a.message-link {
         grid-template-columns: 1fr;
         gap: 0.5rem;
     }
-
-    .message-date {
+    #wrapper main .message-container .message-date {
         text-align: left;
         margin-top: 0.25rem;
     }
-}
-
-.message-badge {
-    background-color: #dc3545;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 0.75rem;
-    vertical-align: top;
-    margin-left: 4px;
 }
