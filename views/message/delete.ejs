@@ -1,30 +1,27 @@
-<h1><%- title %></h1>
-<%- messages() %>
-<% if (errors) { %>
-<ul class="notice">
-    <% errors.array().forEach(error => { %>
-    <li><%= error.msg %></li>
-    <%  }) %>
-</ul>
-<% } %>
+<div class="message-container delete-confirmation">
+  <div class="message-header">
+    <h1><%- title %></h1>
+  </div>
 
-<div class="message-view">
-    <dl>
-        <dt>Subject</dt>
-        <dd><%- messageData.message_subject %></dd>
-        <dt>From</dt>
-        <dd><%- messageData.account_firstname %> <%- messageData.account_lastname %> - <%- messageData.account_type%>
-        </dd>
-    </dl>
-    <pre class="message-pane"><%- messageData.message_body %></pre>
-    
-</div>
-<br>
+  <%- messages() %>
+  <% if (errors) { %>
+    <ul class="notice">
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
 
-<form action="/message/delete" method="post">
+  <p>Are you sure you want to permanently delete this message?</p>
+  
+  <div class="message-to-delete">
+    <p><strong>Subject:</strong> <%- messageData.message_subject %></p>
+    <p><strong>From:</strong> <%- messageData.account_firstname %> <%- messageData.account_lastname %></p>
+  </div>
+
+  <form action="/message/delete" method="post" class="message-actions">
     <input type="hidden" name="message_id" value="<%- messageData.message_id %>">
-    <div class="button-strip">
-        <a href="/message/view/<%- messageData.message_id %>"><img src="/images/site/back-icon.svg" height="25" alt="Back"></a>
-        <input type="submit" value="DELETE">
-    </div>
-</form>
+    <a href="/message/view/<%- messageData.message_id %>" class="btn btn-secondary">Cancel</a>
+    <button type="submit" class="btn btn-danger">Yes, Delete Message</button>
+  </form>
+</div>
