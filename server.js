@@ -16,6 +16,7 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
+const messageRoute = require('./routes/messageRoute.js');
 const utilities = require("./utilities/")
 //const bodyParser = require("body-parser")
 
