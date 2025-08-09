@@ -72,6 +72,8 @@ app.get("/", utilities.handleErrors(baseController.buildHome)) //Week 3
 app.use("/inv", inventoryRoute)
 // Account route - UNIT 4, Activity
 app.use("/account", accountRoute)
+// Message routes
+app.use("/message", messageRoute);
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
