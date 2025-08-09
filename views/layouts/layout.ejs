@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('../partials/head') %>
 
-    <body>
-        <div id="wrapper">
-            <%- include('../partials/header') %>
-            <%- include('../partials/navigation') %>
-            
-            <main>
-                <%- body %>
-            </main>
+<%- include('../partials/head') %>
 
-            <%- include('../partials/footer') %>
-        </div>
-    </body>
+<body>
+    <div id="wrapper">
+        <header id="top-header">
+            <%- include("../partials/header") %>
+        </header>
+        <% if (locals.loggedin) { %>
+            <div class="message-link-container">
+                <a href="/message/" title="Go to your inbox">
+                    Inbox
+                    <% if (locals.unreadMessages > 0) { %><span class="message-badge"><%- unreadMessages %></span><% } %>
+                </a>
+            </div>
+        <% } %>
+        <nav>
+            <%- nav %>
+        </nav>
+        <main>
+            <%- body %>
+        </main>
+        <%- include('../partials/footer') %>
+    </div>
+</body>
 </html>
