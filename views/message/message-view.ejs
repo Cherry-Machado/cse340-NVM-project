@@ -1,31 +1,30 @@
-<h1><%- title %></h1>
-<%- messages() %>
-<% if (errors) { %>
-<ul class="notice">
-    <% errors.array().forEach(error => { %>
-    <li><%= error.msg %></li>
-    <%  }) %>
-</ul>
-<% } %>
+<div class="message-container">
+  <%- messages() %>
 
-<div class="message-view">
-    <dl>
-        <dt>Subject</dt>
-        <dd><%- messageData.message_subject %></dd>
-        <dt>From</dt>
-        <dd><%- messageData.account_firstname %> <%- messageData.account_lastname %> - <%- messageData.account_type%></dd>
-    </dl>
-    <pre class="message-pane"><%- messageData.message_body %></pre>
-    <div class="button-strip">
-        <a href="/message/compose/<%- messageData.message_id %>" title="Reply to this message"><img loading="eager" src="/images/site/reply-icon.svg" height="25" width="25" alt="reply"></a>
-        <button id="readButton" title="Mark this message as read" data-id="<%- messageData.message_id %>"><img loading="eager" src="/images/site/<%- messageData.message_read ? "read" : "unread" %>-icon.svg" height="25" width="25" alt="mark read or unread"></button>
-        <button id="archiveButton" title="Move this message to the archive." data-id="<%- messageData.message_id %>"><img loading="eager" src="/images/site/<%- messageData.message_archived ? "" : "un" %>archived-icon.svg" height="25" width="25" alt="archive or unarchive"></button>
-        <a href="/message/view/<%- messageData.message_id %>/delete" id="deleteButton" title="Permanently delete this message"><img src="/images/site/delete-icon.svg" height="25" width="25" alt="delete"></a>
+  <div class="message-view">
+    <div class="message-header">
+        <h2><%- message.message_subject %></h2>
+        <div class="message-meta">
+            <p><strong>From:</strong> <%- message.account_firstname %> <%- message.account_lastname %></p>
+            <p><strong>To:</strong> You</p>
+            <p><strong>Date:</strong> <%- new Date(message.message_created).toLocaleString() %></p>
+        </div>
     </div>
+    <div class="message-body">
+        <%- message.message_body %>
+    </div>
+  </div>
+
+  <div class="message-actions">
+      <a href="/message<% if (message.message_archived) { %>/archive<% } else { %>/<% } %>" class="message-btn">&larr; Back</a>
+      <a href="/message/compose/<%- message.message_id %>" class="message-btn">Reply</a>
+      <form id="archiveForm" action="/message/view/<%- message.message_id %>/toggle-archived" method="post" style="display: inline;">
+          <button type="submit" class="message-btn">
+              <%- message.message_archived ? "Unarchive" : "Archive" %>
+          </button>
+      </form>
+      <a href="/message/view/<%- message.message_id %>/delete" class="message-btn message-btn-danger">Delete</a>
+  </div>
 </div>
-<br>
-<div class="button-strip">
-    <a href="/message" title="Return to inbox"><img src="/images/site/back-icon.svg" height="25" width="25" alt="reply"></a>
-</div>
-<script src="/js/message-view.js">
-</script>
+
+<script src="/js/message-actions.js"></script>

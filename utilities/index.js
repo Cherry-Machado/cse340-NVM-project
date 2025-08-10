@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const messageModel = require("../models/message-model.js");
 const Util = {}
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
@@ -157,6 +158,23 @@ Util.checkJWTToken = (req, res, next) => {
 }
 
 /* ****************************************
+* Middleware to fetch unread message count
+**************************************** */
+Util.checkUnreadMessages = async (req, res, next) => {
+  if (res.locals.loggedin) {
+    try {
+      const accountId = res.locals.accountData.account_id;
+      const unreadCount = await messageModel.getUnreadMessageCount(accountId);
+      res.locals.unreadMessages = unreadCount;
+    } catch (error) {
+      console.error("Error fetching unread message count:", error);
+      res.locals.unreadMessages = 0;
+    }
+  }
+  next();
+};
+
+/* ****************************************
  * Middleware to check user account type
  **************************************** */
 Util.checkAccountType = (req, res, next) => {
@@ -197,37 +215,14 @@ Util.updateCookie = (accountData, res) => {
 };
 
 /**
- * Build an html table string from the message array
+ * Build an HTML select element for message recipients.
+ * @param {Array<object>} recipientData - Array of account objects.
+ * @param {number|null} [preselected=null] - The ID of the recipient to pre-select.
+ * @returns {string} - The HTML string for the select element.
  */
-Util.buildInbox = (messages) => {
-  inboxList = `
-  <table>
-    <thead>
-      <tr>
-        <th>Received</th><th>Subject</th><th>From</th><th>Read</th>
-      </tr>
-    </thead>
-    <tbody>`;
-
-  messages.forEach((message) => {
-    inboxList += `
-    <tr>
-      <td>${message.message_created.toLocaleString()}</td>
-      <td><a href="/message/view/${message.message_id}">${message.message_subject}</a></td>
-      <td>${message.account_firstname} ${message.account_type}</td>
-      <td>${message.message_read ? "✓" : " "}</td>
-    </tr>`;
-  });
-
-  inboxList += `
-  </tbody>
-  </table> `;
-  return inboxList;
-};
-
 Util.buildRecipientList = (recipientData, preselected = null) => {
-  let list = `<select name="message_to" required>`;
-  list += '<option value="">Select a recipient</option>';
+  let list = `<select name="message_to" id="message_to" required>`;
+  list += '<option value="" disabled selected>Select a recipient</option>';
 
   recipientData.forEach((recipient) => {
     list += `<option ${preselected == recipient.account_id ? "selected" : ""} value="${recipient.account_id}">${recipient.account_firstname} ${recipient.account_lastname}</option>`
@@ -235,7 +230,6 @@ Util.buildRecipientList = (recipientData, preselected = null) => {
   list += "</select>"
 
   return list;
-
 };
 
 module.exports = Util;

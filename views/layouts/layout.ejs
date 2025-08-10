@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<%- include('../partials/head') %>
+    <%- include('../partials/head') %>
 
 <body>
     <div id="wrapper">
-        <header id="top-header">
-            <%- include("../partials/header") %>
-        </header>
-        <% if (locals.loggedin) { %>
+        <%- include('../partials/header') %>
+         <% if (locals.loggedin) { %>
             <div class="message-link-container">
                 <a href="/message/" title="Go to your inbox">
                     Inbox
@@ -16,9 +13,7 @@
                 </a>
             </div>
         <% } %>
-        <nav>
-            <%- nav %>
-        </nav>
+        <%- include('../partials/navigation') %>
         <main>
             <%- body %>
         </main>

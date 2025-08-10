@@ -27,7 +27,6 @@ validate.sendMessageRules = () => {
     // Make sure there is a message
     body("message_body")
       .trim()
-      .escape()
       .notEmpty()
       .withMessage("Message body is missing or invalid."),
   ];
@@ -47,13 +46,10 @@ validate.checkMessageData = async (req, res, next) => {
           recipientData,
           message_to
         );
-        res.locals.Subject = message_subject;
-        res.locals.Body = message_body;
         res.render("message/compose", {
             errors,
             title: "Compose",
             nav,
-            message_to,
             message_subject,
             message_body,
             recipientList,

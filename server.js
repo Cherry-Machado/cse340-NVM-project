@@ -38,7 +38,7 @@ const utilities = require("./utilities/")
 
 // Middleware to parse cookies
 app.use(cookieParser())
-app.use(utilities.checkJWTToken) 
+app.use(utilities.checkJWTToken)
 
 
 app.use(express.json()) // for parsing application/json
@@ -52,6 +52,9 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+
+// Custom middleware to check for unread messages
+app.use(utilities.checkUnreadMessages);
 
 
 

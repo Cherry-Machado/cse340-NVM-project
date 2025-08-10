@@ -1,26 +1,39 @@
-<h1><%- title %></h1>
-<%- messages() %>
-<% if (errors) { %>
-<ul class="notice">
-    <% errors.array().forEach(error => { %>
-    <li><%= error.msg %></li>
-    <%  }) %>
-</ul>
-<% } %>
+<div class="message-container">
+    <h1><%- title %></h1>
+    <%- messages() %>
+    <div class="message-actions">
+        <a href="/message/compose" class="message-btn">New Message</a>
+        <% if (title.includes("Inbox")) { %>
+            <a href="/message/archive" class="message-btn">View Archived</a>
+        <% } else { %>
+            <a href="/message/" class="message-btn">View Inbox</a>
+        <% } %>
+    </div>
 
-<ul>
-    <li>
-        <a href="/message/compose">Create New Message</a>
-    </li>
-    <% if(!archived) { %>
-    <li>
-        <a href="/message/archive">View <%- archivedMessages %> Archived Messages</a>
-    </li>
-    <% } else { %>
-    <li>
-        <a href="/message">Return to inbox(<%- unarchivedMessages %>)</a>
-    </li>
-    <% } %>
-</ul>
-
-<%- inboxTable %>
+    <table class="message-table">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Preview</th>
+                <th>From</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (Array.isArray(messageList) && messageList.length) { %>
+                <% messageList.forEach(message => { %>
+                <tr class="message-row <% if (!message.message_read) { %>unread<% } %>" onclick="location.href='/message/view/<%= message.message_id %>'">
+                    <td data-label="Subject:" class="message-subject"><%- message.message_subject.substring(0, 27) %>...</td>
+                    <td data-label="Preview:" class="message-preview-col"><%- message.message_body.substring(0, 27) %>...</td>
+                    <td data-label="From:" class="message-from"><%- message.account_firstname %> <%- message.account_lastname %></td>
+                    <td data-label="Date:" class="message-date"><%- new Date(message.message_created).toLocaleString() %></td>
+                </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="4" style="text-align: center; padding: 2rem;">You have no messages in your inbox.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

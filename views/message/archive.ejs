@@ -1,11 +1,42 @@
-<h1><%- title %></h1>
-<%- messages() %>
-<% if (errors) { %>
-<ul class="notice">
-    <% errors.array().forEach(error => { %>
-    <li><%= error.msg %></li>
-    <%  }) %>
-</ul>
-<% } %>
+<div class="message-container">
+    <h1><%- title %></h1>
+    <%- messages() %>
+    <% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+        <%  }) %>
+    </ul>
+    <% } %>
 
-</table>
+    <div class="message-actions">
+        <a href="/message/" class="message-btn">View Inbox</a>
+    </div>
+
+    <table class="message-table">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Preview</th>
+                <th>From</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (Array.isArray(messageList) && messageList.length) { %>
+                <% messageList.forEach(message => { %>
+                <tr class="message-row" onclick="location.href='/message/view/<%= message.message_id %>'">
+                    <td data-label="Subject:" class="message-subject"><%- message.message_subject.substring(0, 27) %>...</td>
+                    <td data-label="Preview:" class="message-preview-col"><%- message.message_body.substring(0, 27) %>...</td>
+                    <td data-label="From:" class="message-from"><%- message.account_firstname %> <%- message.account_lastname %></td>
+                    <td data-label="Date:" class="message-date"><%- new Date(message.message_created).toLocaleString() %></td>
+                </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="4" style="text-align: center; padding: 2rem;">You have no archived messages.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
