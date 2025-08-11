@@ -26,8 +26,8 @@
             <% if (Array.isArray(messageList) && messageList.length) { %>
                 <% messageList.forEach(message => { %>
                 <tr class="message-row" onclick="location.href='/message/view/<%= message.message_id %>'">
-                    <td data-label="Subject:" class="message-subject"><%- message.message_subject.substring(0, 27) %>...</td>
-                    <td data-label="Preview:" class="message-preview-col"><%- message.message_body.substring(0, 27) %>...</td>
+                    <td data-label="Subject:" class="message-subject"><%- message.message_subject.substring(0, 33) %>...</td>
+                    <td data-label="Preview:" class="message-preview-col"><%- message.message_body.substring(0, 33) %>...</td>
                     <td data-label="From:" class="message-from"><%- message.account_firstname %> <%- message.account_lastname %></td>
                     <td data-label="Date:" class="message-date"><%- new Date(message.message_created).toLocaleString() %></td>
                 </tr>

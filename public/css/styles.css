@@ -34,7 +34,7 @@ main>p {
 #top-header {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  padding: 10px 0 30px 0;
+  padding: 12px 0;
   align-items: center;
 }
 
@@ -70,6 +70,11 @@ ul.success {
   text-decoration: none;
   color: var(--primary-color);
   font-family: "Raleway", sans-serif;
+}
+
+#tools a:hover {
+  color: var(--secondary-back-color);
+  font-weight: bold;
 }
 
 nav ul {
@@ -626,6 +631,12 @@ textarea {
   font-size: 1.5rem;
 }
 
+.logout:hover {
+  color: var(--secondary-back-color);
+  text-decoration: underline;
+}
+
+
 /* Account Management View Styles */
 .account-management-container {
   padding: 1rem 2rem;
@@ -639,7 +650,7 @@ textarea {
 
 .account-management-container h2 {
   color: var(--primary-color);
-  margin-bottom: 0.5rem;
+  margin: 1rem 0;
 }
 
 .welcome-message {
@@ -687,6 +698,52 @@ textarea {
 /* ======================================== */
 /* ========= Internal Messaging CSS ========= */
 /* ======================================== */
+
+#wrapper .message-link-container {
+    display: flex;
+    justify-content: flex-end; /* Pushes the link to the right */
+    align-items: center;
+   /*  padding: 0.5rem 0;
+    margin-bottom: 1rem; */ /* Space before the navigation bar */
+    border-radius: 8px;
+}
+
+#wrapper .message-link-container h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+#wrapper .message-link-container a {
+    color: white;
+    display: inline-flex; /* Helps align the badge vertically */
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    border-radius: 5px 5px 0 0; /* Rounded corners on the top */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+#wrapper .message-link-container a:hover {
+    background-color: var(--secondary-back-color);
+    transform: translateY(-2px);
+    color: white;
+}
+
+.message-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 6px;
+    margin-left: 8px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: white;
+    background-color: #d9534f; /* A nice red for notifications */
+    border-radius: 50%; /* This makes it a circle */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
 
 .message-container {
     padding: 1rem 2rem;
